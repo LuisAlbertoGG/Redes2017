@@ -108,7 +108,7 @@ class LoginWindowIP(QtGui.QWidget):
         #mipuertofinal1 = int(mipuerto1.text())
         tupuertofinal1 = str(tupuerto1.text())
         a = get_ip_address()
-        chat = Chat(a, tupuertofinal1, False)
+        self.chat = Chat(a, tupuertofinal1, False)
         miservidor =  Channel(tupuerto1, None, None)
         #miservidor.miservidor.start()
         

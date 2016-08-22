@@ -14,7 +14,7 @@ from GUI.login import *
 class MyApiServer:
     
     def __init__(self, my_port = None):
-        self.server = SimpleXMLRPCServer(("localhost", my_port), logRequests=True, allow_none=True)#SimpleXMLRPCRequestHandler)
+        self.server = SimpleXMLRPCServer(("localhost", my_port), logRequests=True) #allow_none=True)#SimpleXMLRPCRequestHandler)
         #self.server.register_instance(ServerTrial()) 
         self.server_thread = threading.Thread(target=self.server.serve_forever)
         self.server_thread.start()
@@ -40,6 +40,8 @@ class FunctionWrapper:
     def sendMessage_wrapper(self, message):
         a = str(message)
         global chat
+        print chat.local
+        print a
         chat.mostar(a)
         print a
         return "mensaje entregado"
