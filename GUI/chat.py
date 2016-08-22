@@ -7,21 +7,23 @@ from PyQt4 import QtGui, QtCore
 from PyQt4.QtGui import QWidget, QLabel
 import sys
 sys.path.insert(0, '../Constants')
+sys.path.insert(0, '../Channel')
 from Constants.Constants import *
 from login import *
+from Channel.Channel import *
 
 
 class Chat(QtGui.QWidget):
 
-    def __init__(self):
+    def __init__(self, mipuertofinal, tupuertofinal):
         super(Chat, self).__init__()
-        mipuertofinal = 0
-        tupuertofinal = 0
+        self.mipuertofinal = mipuertofinal
+        self.tupuertofinal = tupuertofinal
         self.initUI()
 
 
     def initUI(self):
-        self.conversacion = QtGui.QLabel('Conversacion', self)
+        self.conversacion = QtGui.QLabel('Conversacion del puerto '+str(self.mipuertofinal)+' con el puerto '+str(self.tupuertofinal), self)
         self.conversacion1 = QtGui.QTextEdit()
         self.conversacion2 = QtGui.QLineEdit()
         self.conversacion1.setReadOnly(True)
@@ -48,7 +50,10 @@ class Chat(QtGui.QWidget):
 
         mensaje = conversacion2.text()
         #conversacion1.insertPlainText (self, mensaje)
-        self.conversacion1.append(self.mipuertofinal+' dice: '+mensaje)
+        self.conversacion1.append(str(self.mipuertofinal)+' dice: '+mensaje)
+        msg = str(self.mipuertofinal)+' dice: '+mensaje
+        envia_mensaje = Channel(None, None, self.tupuertofinal)
+        envia_mensaje.send_text(msg)
         #temp1 = str(mensaje)
         #userAscii = [ord(c) for c in temp1]
         #contraAscii = [ord(c) for c in temp2]
@@ -60,7 +65,7 @@ class Chat(QtGui.QWidget):
         #temp2 = ''.join(contraAscii)
         
 
-        print mensaje
+        #print mensaje
         #self.otro = OtroWidget
 
         #self.otro.show()

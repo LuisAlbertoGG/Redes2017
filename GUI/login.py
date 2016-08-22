@@ -5,9 +5,13 @@ from PyQt4 import QtGui, QtCore
 from PyQt4.QtGui import QWidget, QLabel
 #from usuario import Registro
 import sys
-sys.path.insert(0, '../Constants')
+#sys.path.insert(0, '../')
+#sys.path.insert(1, '../Constants')
 sys.path.insert(0, '../Channel')
 from Constants.Constants import *
+from Channel.ApiServer import *
+from Channel.ApiClient import *
+from Channel.Channel import *
 from chat import Chat
 
 
@@ -49,13 +53,13 @@ class LoginWindow(QtGui.QWidget):
 
     def access(self, mipuerto1=None, tupuerto1=None):
 
-        mipuertofinal1 = mipuerto1.text()
-	tupuertofinal1 = tupuerto1.text()
-        print mipuertofinal1
-        print tupuertofinal1
-        chat = Chat()
-        chat.mipuertofinal = mipuertofinal1
-        chat.tupuertofinal = tupuertofinal1
+        mipuertofinal1 = int(mipuerto1.text())
+	tupuertofinal1 = int(tupuerto1.text())
+        miservidor =  Channel(None, mipuertofinal1, tupuertofinal1)
+        miservidor.start()
+        chat = Chat(mipuertofinal1, tupuertofinal1)
+        #chat.mipuertofinal = mipuertofinal1
+        #chat.tupuertofinal = tupuertofinal1
         self.close()
         chat.show()
 

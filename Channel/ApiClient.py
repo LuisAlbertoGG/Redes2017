@@ -3,11 +3,11 @@
 import xmlrpclib
 
 class MyApiClient:
+	def __init__(self, your_port = None, msg = None):
 # Create an object to represent our server.
-	server_url = 'http://baba';
-	server = xmlrpclib.Server(server_url);
+		proxy = xmlrpclib.ServerProxy("http://localhost:"+str(your_port)+"/")
+		proxy.sendMessage_wrapper(msg)
+		print msg +"mandado al cliente del puerto "+str(your_port)
 
-# Call the server and get our result.
-	result = server.sample.sumAndDifference(5, 3)
-	print "Sum:", result['sum']
-	print "Difference:", result['difference']
+
+

@@ -5,8 +5,14 @@ from SimpleXMLRPCServer import SimpleXMLRPCRequestHandler
 
 class MyApiServer:
     def __init__(self, my_port = None):
-        server = SimpleXMLRPCServer(("localhost", my_port), requestHandler=RequestHandler)
-        server.register_introspection_functions();
+        self.server = SimpleXMLRPCServer(("localhost", my_port), SimpleXMLRPCRequestHandler)
+        print "escuchando en el puerto "+ str(my_port)
+        self.server.register_introspection_functions();
+        self.server.register_instance(FunctionWrapper())
+#        server.serve_forever()
+
+    def run(self):
+        self.server.serve_forever()
         
 class FunctionWrapper:
     def __init__(self):
@@ -18,6 +24,12 @@ class FunctionWrapper:
     hacer lo necesario para mostrar el texto en nuestra pantalla.
     ************************************************** """
     def sendMessage_wrapper(self, message):
+        print "ya"
+
+
+
+
+
         
 
 
