@@ -1,0 +1,10 @@
+#! /usr/bin/env python
+# -*- coding: utf-8 -*-
+
+
+LOGIN_WIDTH = 250
+LOGIN_HEIGTH = 200
+CHAT_WIDTH = 500
+CHAT_HEIGTH = 1000
+DEFAULT_POSTION_X =350
+DEFAULT_POSTION_Y =350
