@@ -6,7 +6,7 @@ class MyApiClient:
 	def __init__(self, your_port = None, msg = None):
 # Create an object to represent our server.
 		self.msg = msg
-		url = "http://"+str(your_port)+":5000"#+"/"
+		url = "http://"+str(your_port)#+"/"
 		proxy = xmlrpclib.ServerProxy(url)
 		print url
 		try:

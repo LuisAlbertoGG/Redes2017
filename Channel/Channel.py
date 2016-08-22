@@ -16,7 +16,7 @@ con una proxy apuntando hacia los servicios del
 servidor xmlrpc del contacto
 **************************************************"""
 class Channel(threading.Thread):
-    local = True
+    #local = True
 
 
 
@@ -34,13 +34,13 @@ class Channel(threading.Thread):
         if(my_port != None):
             threading.Thread.__init__(self)
             self.miservidor = MyApiServer(my_port)
-            self.local = True
+            #self.local = True
             #self.miservidor.start()
         else:
             if(contact_ip != None):
                 threading.Thread.__init__(self)
                 self.miservidor = MyApiServer(5000)
-                self.local = False
+           #     self.local = False
              #   self.miservidor.run()
             else:
                 #threading.Thread.__init__(self)
@@ -59,13 +59,14 @@ class Channel(threading.Thread):
     #Metodo que se encarga de mandar texto al contacto con
     #el cual se estableció la conexion
     #**************************************************"""
-    def send_text(self, text):
-        if(self.local):
+    def send_text(self, text, local):
+        if(local):
             threading.Thread.__init__(self)
             miMensaje = MyApiClient("localhost:"+str(self.contact_port), text)
         else:
             threading.Thread.__init__(self)
-            miMensaje = MyApiClient(str(self.contact_port), text)
+            a = str(self.contact_port)+ ":5000"
+            miMensaje = MyApiClient(a, text)
         #Chat.self.conversacion1.append(self.mipuertofinal+' dice: '+mensaje)
         #TODO
 

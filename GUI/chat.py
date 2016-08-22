@@ -19,10 +19,11 @@ from Channel.Channel import *
 
 class Chat(QtGui.QWidget):
 
-    def __init__(self, mipuertofinal, tupuertofinal):
+    def __init__(self, mipuertofinal, tupuertofinal, local):
         super(Chat, self).__init__()
         self.mipuertofinal = mipuertofinal
         self.tupuertofinal = tupuertofinal
+        self.local = local
         #self.local = local
         self.initUI()
 
@@ -56,7 +57,7 @@ class Chat(QtGui.QWidget):
         mensaje = conversacion2.text()
         msg = str(self.mipuertofinal)+' dice: '+mensaje
         envia_mensaje = Channel(None, None, self.tupuertofinal)
-        envia_mensaje.send_text(msg)
+        envia_mensaje.send_text(msg, self.local)
         envia_mensaje = Channel()
         self.conversacion1.append(msg)
         #temp1 = str(mensaje)

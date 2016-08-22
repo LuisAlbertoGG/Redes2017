@@ -59,7 +59,7 @@ class LoginWindow(QtGui.QWidget):
 	tupuertofinal1 = int(tupuerto1.text())
         miservidor =  Channel(None, mipuertofinal1, tupuertofinal1)
         #miservidor.miservidor.start()
-        chat = Chat(mipuertofinal1, tupuertofinal1)
+        chat = Chat(mipuertofinal1, tupuertofinal1, True)
         #chat.mipuertofinal = mipuertofinal1
         #chat.tupuertofinal = tupuertofinal1
         self.close()
@@ -102,7 +102,7 @@ class LoginWindowIP(QtGui.QWidget):
         #mipuertofinal1 = int(mipuerto1.text())
         tupuertofinal1 = str(tupuerto1.text())
         a = get_ip_address()
-        chat = Chat(a, tupuertofinal1)
+        chat = Chat(a, tupuertofinal1, False)
         miservidor =  Channel(tupuerto1, None, None)
         #miservidor.miservidor.start()
         

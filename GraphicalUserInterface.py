@@ -35,7 +35,7 @@ def main(argv):
         local = True if '-l' in opts[0] else False
     else:
         local = False
-    if(local):
+    if(local==False):
         app = QtGui.QApplication(sys.argv)
         mainWindow = LoginWindow()
         sys.exit(app.exec_())
