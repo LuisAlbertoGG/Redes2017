@@ -4,7 +4,7 @@ import sys
 import threading
 #import SocketServer
 sys.path.insert(0, '../GUI')
-#from Gui.chat import Chat
+#from GUI.chat import *
 from ApiServer import *
 from ApiClient import *
 
@@ -16,6 +16,7 @@ con una proxy apuntando hacia los servicios del
 servidor xmlrpc del contacto
 **************************************************"""
 class Channel(threading.Thread):
+    local = True
 
 
 
@@ -33,10 +34,14 @@ class Channel(threading.Thread):
         if(my_port != None):
             threading.Thread.__init__(self)
             self.miservidor = MyApiServer(my_port)
+            self.local = True
+            #self.miservidor.start()
         else:
             if(contact_ip != None):
                 threading.Thread.__init__(self)
                 self.miservidor = MyApiServer(5000)
+                self.local = False
+             #   self.miservidor.run()
             else:
                 #threading.Thread.__init__(self)
                 #miMensaje = MyApiClient(self.contact_port)
@@ -55,8 +60,12 @@ class Channel(threading.Thread):
     #el cual se estableció la conexion
     #**************************************************"""
     def send_text(self, text):
-        threading.Thread.__init__(self)
-        miMensaje = MyApiClient(self.contact_port, text)
+        if(self.local):
+            threading.Thread.__init__(self)
+            miMensaje = MyApiClient("localhost:"+str(self.contact_port), text)
+        else:
+            threading.Thread.__init__(self)
+            miMensaje = MyApiClient(str(self.contact_port), text)
         #Chat.self.conversacion1.append(self.mipuertofinal+' dice: '+mensaje)
         #TODO
 

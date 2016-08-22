@@ -8,9 +8,13 @@ from PyQt4.QtGui import QWidget, QLabel
 import sys
 sys.path.insert(0, '../Constants')
 sys.path.insert(0, '../Channel')
+sys.path.insert(0, '..')
+from Channel.ApiClient import *
+from Channel.ApiServer import *
 from Constants.Constants import *
 from login import *
 from Channel.Channel import *
+#from GraphicalUserInterface import local
 
 
 class Chat(QtGui.QWidget):
@@ -19,11 +23,12 @@ class Chat(QtGui.QWidget):
         super(Chat, self).__init__()
         self.mipuertofinal = mipuertofinal
         self.tupuertofinal = tupuertofinal
+        #self.local = local
         self.initUI()
 
 
     def initUI(self):
-        self.conversacion = QtGui.QLabel('Conversacion del puerto '+str(self.mipuertofinal)+' con el puerto '+str(self.tupuertofinal), self)
+        self.conversacion = QtGui.QLabel('Conversacion el puerto '+str(self.mipuertofinal)+' con el puerto '+str(self.tupuertofinal), self)
         self.conversacion1 = QtGui.QTextEdit()
         self.conversacion2 = QtGui.QLineEdit()
         self.conversacion1.setReadOnly(True)
@@ -49,11 +54,11 @@ class Chat(QtGui.QWidget):
     def access(self, conversacion2=None):
 
         mensaje = conversacion2.text()
-        #conversacion1.insertPlainText (self, mensaje)
-        self.conversacion1.append(str(self.mipuertofinal)+' dice: '+mensaje)
         msg = str(self.mipuertofinal)+' dice: '+mensaje
         envia_mensaje = Channel(None, None, self.tupuertofinal)
         envia_mensaje.send_text(msg)
+        envia_mensaje = Channel()
+        self.conversacion1.append(msg)
         #temp1 = str(mensaje)
         #userAscii = [ord(c) for c in temp1]
         #contraAscii = [ord(c) for c in temp2]

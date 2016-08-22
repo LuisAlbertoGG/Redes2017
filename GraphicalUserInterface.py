@@ -17,6 +17,7 @@
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtGui import QWidget, QLabel
 from GUI.login import LoginWindow
+from GUI.login import LoginWindowIP
 import sys, getopt
 
 
@@ -34,9 +35,14 @@ def main(argv):
         local = True if '-l' in opts[0] else False
     else:
         local = False
-    app = QtGui.QApplication(sys.argv)
-    mainWindow = LoginWindow()
-    sys.exit(app.exec_())
+    if(local):
+        app = QtGui.QApplication(sys.argv)
+        mainWindow = LoginWindow()
+        sys.exit(app.exec_())
+    else:
+        app = QtGui.QApplication(sys.argv)
+        mainWindow = LoginWindowIP()
+        sys.exit(app.exec_())
 
 
 if __name__ == '__main__':
