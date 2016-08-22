@@ -75,4 +75,6 @@ class Chat(QtGui.QWidget):
         #self.otro = OtroWidget
 
         #self.otro.show()
-        
+    def mostar(self, msg):
+        print "intentando"
+        self.conversacion1.append(msg)

@@ -2,14 +2,17 @@
 # -*- coding: utf-8 -*-
 import sys
 sys.path.insert(1, '../Constatns')
+sys.path.insert(1, '../GUI')
 from SimpleXMLRPCServer import SimpleXMLRPCServer
 from SimpleXMLRPCServer import SimpleXMLRPCRequestHandler
 import threading
-from Constants.AuxiliarFunctions import *
-#from GUI.chat import *
+#from Constants.AuxiliarFunctions import *
+from GUI.login import *
+
 
 
 class MyApiServer:
+    
     def __init__(self, my_port = None):
         self.server = SimpleXMLRPCServer(("localhost", my_port), logRequests=True, allow_none=True)#SimpleXMLRPCRequestHandler)
         #self.server.register_instance(ServerTrial()) 
@@ -36,6 +39,9 @@ class FunctionWrapper:
     ************************************************** """
     def sendMessage_wrapper(self, message):
         a = str(message)
+        global chat
+        chat.mostar(a)
+        print a
         return "mensaje entregado"
 
 

@@ -14,6 +14,9 @@
 #                                                   #
 # Distributed under terms of the MIT license.       #
 #####################################################
+import sys
+sys.path.insert(0, '../GUI')
+from GUI.chat import *
 import socket
 
 """**************************************************
@@ -25,6 +28,13 @@ def get_ip_address():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect(("8.8.8.8", 80))
     return "%s"% (s.getsockname()[0])
+
+
+def mostrar(a):
+    print "esta intentando"
+    conversacion1.append(a)
+
+
 
 """**************************************************
  Clase auxiliar que implementa el metodo

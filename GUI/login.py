@@ -23,6 +23,8 @@ from chat import Chat
 
 class LoginWindow(QtGui.QWidget):
 
+    global chat
+
     def __init__(self ):
         super(LoginWindow, self).__init__()
         self.initUI()
@@ -59,13 +61,17 @@ class LoginWindow(QtGui.QWidget):
 	tupuertofinal1 = int(tupuerto1.text())
         miservidor =  Channel(None, mipuertofinal1, tupuertofinal1)
         #miservidor.miservidor.start()
-        chat = Chat(mipuertofinal1, tupuertofinal1, True)
+        self.chat = Chat(mipuertofinal1, tupuertofinal1, True)
         #chat.mipuertofinal = mipuertofinal1
         #chat.tupuertofinal = tupuertofinal1
         self.close()
-        chat.show()
+        import __builtin__
+        __builtin__.chat = self.chat
+        self.chat.show()
 
 class LoginWindowIP(QtGui.QWidget):
+
+    chat = None
 
     def __init__(self ):
         super(LoginWindowIP, self).__init__()
@@ -109,6 +115,8 @@ class LoginWindowIP(QtGui.QWidget):
         #chat.mipuertofinal = mipuertofinal1
         #chat.tupuertofinal = tupuertofinal1
         self.close()
+        import __builtin__
+        __builtin__.chat = self.chat
         chat.show()
 
     
