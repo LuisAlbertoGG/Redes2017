@@ -31,10 +31,10 @@ class recordAudio():
 			data_ar = numpy.fromstring(''.join(frame),  dtype=numpy.uint8)
 			q.put(data_ar)
 
-	def inicia(self, local, string):#Método que inicia la grabación de audio
+	def inicia(self, local, string):#Inicia la grabacion de audio
 		if(local):#Si es local
 			queue = mp.Queue()
-			p = mp.Process(target=self.encolarAudio, args=(queue,))#Se llama al método encolarAudio
+			p = mp.Process(target=self.encolarAudio, args=(queue,))#Se llama al metodo encolarAudio
 			p.start()
 			while True:
 				d = queue.get()	
@@ -42,7 +42,7 @@ class recordAudio():
 				
 		else:#Si no lo es
 			queue = mp.Queue()
-			p = mp.Process(target=self.encolarAudio, args=(queue,))#Se llama al método encolarAudio
+			p = mp.Process(target=self.encolarAudio, args=(queue,))#Se llama al metodo encolarAudio
 			p.start()
 			while True:
 				d = queue.get()	
