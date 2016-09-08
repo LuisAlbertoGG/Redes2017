@@ -26,20 +26,21 @@ import sys, getopt
 #  Definicion de la funcion principal
 #**************************************************
 def main(argv):
+	#Revisa los argumentos con los que es llamado
     try:
         opts, args = getopt.getopt(argv, "l", ["local="])
     except getopt.GetoptError:
         print getopt.GetoptError.msg
         sys.exit(2)
     if opts: #Si el usuario mandó alguna bandera
-        local = True if '-l' in opts[0] else False
-    else:
-        local = False
-    if(local==False):
+        local = False if '-l' in opts[0] else True
+    else: #Si el usuario no mandó ninguna bandera
+        local = True
+    if(local):#Cuando es local se llama a la interfaz que pide los puertos
         app = QtGui.QApplication(sys.argv)
         mainWindow = LoginWindow()
         sys.exit(app.exec_())
-    else:
+    else:#Cuando no a la que pide las ip's
         app = QtGui.QApplication(sys.argv)
         mainWindow = LoginWindowIP()
         sys.exit(app.exec_())

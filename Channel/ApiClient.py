@@ -2,27 +2,24 @@
 # -*- coding: utf-8 -*-
 import xmlrpclib
 
-class MyApiClient:
+class MyApiClient:#Clase que crea una petición y envía un mensaje o audio
 	def __init__(self, your_port = None, msg = None, text = None):
-# Create an object to represent our server.
-		if(text):
+		if(text):#Si lo que se manda es texto
 			self.msg = msg
-			url = "http://"+str(your_port)#+"/"
-			proxy = xmlrpclib.ServerProxy(url)
+			url = "http://"+str(your_port)#A donde se va a mandar
+			proxy = xmlrpclib.ServerProxy(url)#El proxy
 			print url
 			try:
-				print proxy.sendMessage_wrapper(str(msg))
-				#print msg +" mandado al cliente del puerto "+str(your_port)
+				print proxy.sendMessage_wrapper(str(msg))#Se manda el mensaje
 			except Exception as e:
 				print e
-		else:
+		else:#Si lo que se manda es audio
 			self.msg = msg
-			url = "http://"+str(your_port)#+"/"
-			proxy = xmlrpclib.ServerProxy(url)
+			url = "http://"+str(your_port)#A donde se manda
+			proxy = xmlrpclib.ServerProxy(url)#El proxy
 			print url
 			try:
 				data = xmlrpclib.Binary(msg)
-				#print msg +" mandado al cliente del puerto "+str(your_port)
-				print proxy.sendAudio_wrapper(data)
+				print proxy.sendAudio_wrapper(data)#Se manda el audio
 			except Exception as e:
 				print e

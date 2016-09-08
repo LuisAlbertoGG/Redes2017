@@ -5,9 +5,7 @@ import threading
 import pyaudio
 import time
 import heapq
-#import SocketServer
 sys.path.insert(0, '../GUI')
-#from GUI.chat import *
 from ApiServer import *
 from ApiClient import *
 from RecordAudio import *
@@ -20,9 +18,6 @@ con una proxy apuntando hacia los servicios del
 servidor xmlrpc del contacto
 **************************************************"""
 class Channel(threading.Thread):
-    #local = True
-
-
 
  #"""**************************************************
   #  Constructor de la clase
@@ -38,26 +33,12 @@ class Channel(threading.Thread):
         if(my_port != None):
             threading.Thread.__init__(self)
             self.miservidor = MyApiServer(my_port)
-            #self.local = True
-            #self.miservidor.start()
         else:
             if(contact_ip != None):
                 threading.Thread.__init__(self)
                 self.miservidor = MyApiServer(5000)
-           #     self.local = False
-             #   self.miservidor.run()
             else:
-                #threading.Thread.__init__(self)
-                #miMensaje = MyApiClient(self.contact_port)
                 self.contact_port = contact_port
-
-    #def run(self):
-    #    self.miservidor.serve_forever()
-
-
-
-
-        #TODO
 
      #   """**************************************************
     #Metodo que se encarga de mandar texto al contacto con
@@ -71,15 +52,16 @@ class Channel(threading.Thread):
             threading.Thread.__init__(self)
             a = str(self.contact_port)+ ":5000"
             miMensaje = MyApiClient(a, text, True)
-        #Chat.self.conversacion1.append(self.mipuertofinal+' dice: '+mensaje)
+     #   """**************************************************
+    #Metodo que se encarga de llamar al contacto con
+    #el cual se estableció la conexion
+    #**************************************************"""
 
     def send_audio(self, local):
         
-        print "empieza a escuchar"
         if(local):
             threading.Thread.__init__(self)
             graba1 = recordAudio(self.contact_port)
-            #heap = []
             string = "localhost:"+str(self.contact_port)
             graba1.inicia(True, string)
             
@@ -88,7 +70,3 @@ class Channel(threading.Thread):
             graba1 = recordAudio(self.contact_port)
             string = str(self.contact_port)+ ":5000"
             graba1.inicia(False, string)
-            
-
-        #TODO
-

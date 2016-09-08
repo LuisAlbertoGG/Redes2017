@@ -16,15 +16,9 @@ class recordAudio():
 		self.cola = []
 	 	self.contact_port = contact_port
 
-	def encolarAudio(self, q):
-		CHUNK = 1024
-		CHANNELS = 1
-		RATE = 44100
-		RECORD_SECONDS = 2
+	def encolarAudio(self, q):#Metodo que encola el audio en el queue
 		p = pyaudio.PyAudio()
 		FORMAT = p.get_format_from_width(2)
-		#def callback(in_data, frame_count, time_info, status):
-		#	return (in_data, pyaudio.paContinue)
 		stream = p.open(format=FORMAT,
                     channels=CHANNELS,
                     rate=RATE,
@@ -36,43 +30,20 @@ class recordAudio():
 				frame.append(stream.read(CHUNK))
 			data_ar = numpy.fromstring(''.join(frame),  dtype=numpy.uint8)
 			q.put(data_ar)
-			#heappush(q, data_ar)
 
-	def inicia(self, local, string):
-		if(local):
+	def inicia(self, local, string):#Método que inicia la grabación de audio
+		if(local):#Si es local
 			queue = mp.Queue()
-			p = mp.Process(target=self.encolarAudio, args=(queue,))
+			p = mp.Process(target=self.encolarAudio, args=(queue,))#Se llama al método encolarAudio
 			p.start()
 			while True:
 				d = queue.get()	
-				miMensaje = MyApiClient(string, d, False)
+				miMensaje = MyApiClient(string, d, False)#Se crea el hilo
 				
-			#d = heappop(queue)
-		else:
+		else:#Si no lo es
 			queue = mp.Queue()
-			p = mp.Process(target=self.encolarAudio, args=(queue,))
+			p = mp.Process(target=self.encolarAudio, args=(queue,))#Se llama al método encolarAudio
 			p.start()
 			while True:
 				d = queue.get()	
-				miMensaje = MyApiClient(string, d, False)
-				
-		
-		#stream = p.open(format=p.get_format_from_width(WIDTH),
-         #   channels=CHANNELS,
-          #  rate=RATE,
-           # input=True,
-            #output=False,
-            #stream_callback=callback)
-
-		
-		#stream.start_stream()
-		
-		#while stream.is_active():
-#
-#			miMensaje = MyApiClient("localhost:"+str(self.contact_port), stream, False)
-#			print "estoy escuchando"
-#			time.sleep(0.1)
-#
-#		stream.stop_stream()
-#		stream.close()
-#		p.terminate()
+				miMensaje = MyApiClient(string, d, False)#Se crea el hilo

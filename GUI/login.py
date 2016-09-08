@@ -3,10 +3,7 @@
 
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtGui import QWidget, QLabel
-#from usuario import Registro
 import sys
-#sys.path.insert(0, '../')
-#sys.path.insert(1, '../Constants')
 sys.path.insert(0, '../Channel')
 sys.path.insert(0, '../Constants')
 from Constants.Constants import *
@@ -21,7 +18,7 @@ from chat import Chat
 
 
 
-class LoginWindow(QtGui.QWidget):
+class LoginWindow(QtGui.QWidget):#interfaz que pide los puertos
 
     global chat
 
@@ -30,20 +27,17 @@ class LoginWindow(QtGui.QWidget):
         self.initUI()
 
 
-    def initUI(self):
+    def initUI(self):#La creación de botones ventanas y demás de la interfaz
         mipuerto = QtGui.QLabel('Cual es mi puerto?', self)
         mipuerto1 = QtGui.QLineEdit()
-	tupuerto = QtGui.QLabel('Cual es el puerto del contacto?', self)
+        tupuerto = QtGui.QLabel('Cual es el puerto del contacto?', self)
         tupuerto1 = QtGui.QLineEdit()
         login_button = QtGui.QPushButton('Acceder')
-        #register_button = QtGui.QPushButton('Registrarse')
         login_button.clicked.connect(lambda: self.access(mipuerto1, tupuerto1))
-        #register_button.clicked.connect(self.registro)
         grid = QtGui.QGridLayout()
         grid.addWidget(mipuerto, 0, 0)
         grid.addWidget(mipuerto1, 1, 0)
         grid.addWidget(login_button, 5, 1)
-        #grid.addWidget(register_button, 6, 1)
         grid.addWidget(tupuerto, 2, 0)
         grid.addWidget(tupuerto1, 3, 0)
         self.setLayout(grid)
@@ -51,25 +45,19 @@ class LoginWindow(QtGui.QWidget):
         self.setWindowTitle('Informacion')
         self.show()
 
-    #def registro(self):
-    #    chat = Chat()
-    #    chat.exec_()
 
-    def access(self, mipuerto1=None, tupuerto1=None):
+    def access(self, mipuerto1=None, tupuerto1=None):#Método que define las acciones a realizar cuando se presiona el botón acceder
 
         mipuertofinal1 = int(mipuerto1.text())
-	tupuertofinal1 = int(tupuerto1.text())
+        tupuertofinal1 = int(tupuerto1.text())
         miservidor =  Channel(None, mipuertofinal1, tupuertofinal1)
-        #miservidor.miservidor.start()
         self.chat = Chat(mipuertofinal1, tupuertofinal1, True)
-        #chat.mipuertofinal = mipuertofinal1
-        #chat.tupuertofinal = tupuertofinal1
         self.close()
         import __builtin__
         __builtin__.chat = self.chat
         self.chat.show()
 
-class LoginWindowIP(QtGui.QWidget):
+class LoginWindowIP(QtGui.QWidget):#Interfaz que pide las ip's
 
     chat = None
 
@@ -78,20 +66,13 @@ class LoginWindowIP(QtGui.QWidget):
         self.initUI()
 
 
-    def initUI(self):
-        #mipuerto = QtGui.QLabel('Cual es mi puerto?', self)
-        #mipuerto1 = QtGui.QLineEdit()
+    def initUI(self):#interfaz que pide los puertos
         tupuerto = QtGui.QLabel('Cual es la IP del contacto?', self)
         tupuerto1 = QtGui.QLineEdit()
         login_button = QtGui.QPushButton('Acceder')
-        #register_button = QtGui.QPushButton('Registrarse')
         login_button.clicked.connect(lambda: self.access(tupuerto1))
-        #register_button.clicked.connect(self.registro)
         grid = QtGui.QGridLayout()
-        #grid.addWidget(mipuerto, 0, 0)
-        #grid.addWidget(mipuerto1, 1, 0)
         grid.addWidget(login_button, 5, 1)
-        #grid.addWidget(register_button, 6, 1)
         grid.addWidget(tupuerto, 0, 0)
         grid.addWidget(tupuerto1, 1, 0)
         self.setLayout(grid)
@@ -99,21 +80,14 @@ class LoginWindowIP(QtGui.QWidget):
         self.setWindowTitle('Informacion')
         self.show()
 
-    #def registro(self):
-    #    chat = Chat()
-    #    chat.exec_()
+   
 
-    def access(self,tupuerto1=None):
+    def access(self,tupuerto1=None):#Método que define las acciones a realizar cuando se presiona el botón acceder
 
-        #mipuertofinal1 = int(mipuerto1.text())
         tupuertofinal1 = str(tupuerto1.text())
         a = get_ip_address()
         self.chat = Chat(a, tupuertofinal1, False)
         miservidor =  Channel(tupuerto1, None, None)
-        #miservidor.miservidor.start()
-        
-        #chat.mipuertofinal = mipuertofinal1
-        #chat.tupuertofinal = tupuertofinal1
         self.close()
         import __builtin__
         __builtin__.chat = self.chat
