@@ -1,0 +1,23 @@
+Sí paso el proyecto a alguien dentro de la misma red si nos podemos comunicar.
+
+Dependiendo de la ip nos podemos comunicar.
+
+Alice y Bob con ethernet y wifi se pueden comunicar, dependiendo de la ip.
+
+Sé un usuarui presiona varias veces el botón llamar, no pasa algo.
+
+Primeramente se produce una comunicación pidiendo los puertos del servidor, 
+ya con la interfaz del chat uno puede mandar texto como en la práctica anterior 
+y con el botón llamar se empieza a mandar audio.
+En la carpeta GUI, básicamente se ponen las interfaces del programa.
+El archivo login.py es el que implementa la interfaz que pide los puertos para 
+empezar la comunicación.
+El archivo chat.py es la interfaz que se muestra cuando ya se puede comunicar.
+En la carpeta Channel, el archivo ApiClient crea un objeto para representar
+el servidor.El archivo ApiServer muestra texto en pantalla y el audio.
+El archivo Channel.py básicamente implementa un api de contacto. El archivo 
+RecordAudio.py se encarga de la implementación de como manda y recibe el audio.
+Un problema no solucionado fue la pantalla que mostraba "Llamada de voz" 
+que se pedía en la práctica. El problema principal fue instalar el cv2 para 
+el audio en la práctica, y después de varios intentos de instalación se pudo 
+conectar bien.
