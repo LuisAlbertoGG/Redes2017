@@ -14,4 +14,6 @@ la empezar la comunicación.
 El archivo chat.py es la interfaz que se muestra cuando ya tiene la comunicación.
 En la carpeta Channel, el archivo ApiClient crea un objeto para representar
 el servidor. El archivo ApiServer muestra texto en pantalla. Y el archivo 
-Channel.py básicamente implementa un api de contacto.
+Channel.py básicamente implementa un api de contacto. El problema principal de la 
+práctica fue escribir en la interfaz del chat lo que el otro escribía y se arregló 
+haciendo que un thread lo hiciera con un método auxiliar.
