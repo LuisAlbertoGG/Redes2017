@@ -1,0 +1,17 @@
+Es un programa que utiliza la computadora para correr cierto código en otra computadora.
+
+IP(Internet Protocol) es un número que sirve para identificar a un dispositivo en una red.
+
+Un puerto es una interfaz que ayuda a comunicarse con un programa a través de una red.
+
+Si se puede tener dos clientes en una misma computador.
+
+Primeramente se produce una comunicación pidiendo los puertos del servidor, 
+y se puede mandar texto entre ellos una vez que ya esté hecha la comunicación.
+En la carpeta de GUI, básicamente se ponen las interfaces del programa.
+El archivo login.py es el que implementa la interfaz que pide los puertos para
+la empezar la comunicación.
+El archivo chat.py es la interfaz que se muestra cuando ya tiene la comunicación.
+En la carpeta Channel, el archivo ApiClient crea un objeto para representar
+el servidor. El archivo ApiServer muestra texto en pantalla. Y el archivo 
+Channel.py básicamente implementa un api de contacto.
