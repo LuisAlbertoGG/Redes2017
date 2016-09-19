@@ -48,13 +48,12 @@ class VideoWidget(QWidget):
         frame = cv.QueryFrame(self._capture)
         #if(frame != None):
         self.setMinimumSize(frame.width, frame.height)
-	    self.setMaximumSize(self.minimumSize())
-	    self._frame = None
-	    self._image = self._build_image(frame)
-	    # Paint every 50 ms
-	    self._timer = QTimer(self)
-	    self._timer.timeout.connect(self.queryFrame)
-	    self._timer.start(50)
+        self.setMaximumSize(self.minimumSize())
+        self._frame = None
+        self._image = self._build_image(frame)# Paint every 50 ms
+        self._timer = QTimer(self)
+        self._timer.timeout.connect(self.queryFrame)
+        self._timer.start(50)
         #else:
         #	self.setMinimumSize(100, 100)
 	    #    self.setMaximumSize(self.minimumSize())
