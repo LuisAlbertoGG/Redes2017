@@ -1,0 +1,12 @@
+1. Se pierde información y se tendría que recuperar mediante un protocolo, 
+pero se puede seguir con la transmisión de la información.
+
+2. Afecta a la red haciendola más lenta.
+
+3. Se podría implementar algún protocolo para detectar la pérdida de paquetes y 
+enviar retransmisiones para una mensajería más fiable.
+
+En la carpeta GUI, se implementan las interfaces gráficas del programa para la 
+interacción con el usuario.
+El principal problema fue en envio de video, y se pudo resolver con ayuda de los 
+ejemplos vistos en clase.
